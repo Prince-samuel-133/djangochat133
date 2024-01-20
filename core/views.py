@@ -5,45 +5,45 @@ import requests
 
 from .forms import SignUpForm
 
-def frontpage(request):
-    return render(request, 'core/frontpage.html')
+def frontpage(requests):
+    return render(requests, 'core/frontpage.html')
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
+def signup(requests):
+    if requests.method == 'POST':
+        form = SignUpForm(requests.POST)
 
         if form.is_valid():
             user = form.save()
 
-            login(request, user)
+            login(requests, user)
 
             return redirect('frontpage')
     else:
         form = SignUpForm()
     
-    return render(request, 'core/signup.html', {'form': form})
-def view1(request):
+    return render(requests, 'core/signup.html', {'form': form})
+def view1(requests):
     r = requests.get("http://google.com")
     print(r.status_code)
 
     context = {'status_code': r.status_code}
-    return render(request, 'base.html', context)
+    return render(requests, 'base.html', context)
 
-def view2(request):
+def view2(requests):
     # Code for the second view
     context = {}  # Update context as needed
-    return render(request, 'frontpage.html', context)
+    return render(requests, 'frontpage.html', context)
 
-def view3(request):
+def view3(requests):
     # Code for the third view
     context = {}  # Update context as needed
-    return render(request, 'login.html', context)
+    return render(requests, 'login.html', context)
 
-def view4(request):
+def view4(requests):
     # Code for the fourth view
     context = {}  # Update context as needed
-    return render(request, 'signup.html', context)
-def common_view(request, template_name):
+    return render(requests, 'signup.html', context)
+def common_view(requests, template_name):
     # Make a GET request to the local development URL
     url = 'https://django-chat-app-btvj.onrender.com'  # Use the correct URL for your local development server
     response = requests.get(url)
@@ -54,5 +54,5 @@ def common_view(request, template_name):
     else:
         content = f'Request failed with status code {response.status_code}'
 
-    return render(request, template_name, {'content': content})
+    return render(requests, template_name, {'content': content})
 
