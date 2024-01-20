@@ -43,3 +43,16 @@ def view4(request):
     # Code for the fourth view
     context = {}  # Update context as needed
     return render(request, 'signup.html', context)
+def common_view(request, template_name):
+    # Make a GET request to the local development URL
+    url = 'https://django-chat-app-btvj.onrender.com'  # Use the correct URL for your local development server
+    response = requests.get(url)
+
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        content = response.text
+    else:
+        content = f'Request failed with status code {response.status_code}'
+
+    return render(request, template_name, {'content': content})
+
