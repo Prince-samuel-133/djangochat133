@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 # Use a default value if ALLOWED_HOST is not set
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST", "").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOST", "").split(" ") + ['django-chat-app-btvj.onrender.com']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/rooms/'
